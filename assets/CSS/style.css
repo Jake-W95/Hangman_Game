@@ -9,7 +9,7 @@ body{
     font-family: sans-serif;
 }
 header{
-    text-align: center;
+    height:2rem;
 }
 
 main{
@@ -36,4 +36,9 @@ main{
     padding: .3rem;
     margin: 0 .7rem;
     text-transform: capitalize;
+}
+
+.correct{
+    background: blue;
+    color: orange;
 }
