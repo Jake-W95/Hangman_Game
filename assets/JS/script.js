@@ -8,7 +8,7 @@ console.log(letters[0].innerText )
 
 
 
-$('main').keydown(function(event){
+$(document).keydown(function(event){
     var key = event.originalEvent.key
     // console.log()
     
@@ -17,6 +17,7 @@ for(var L of letters){
     if(L.innerText === key.toUpperCase()){
         // console.log(L)
         $(L).addClass('correct') 
+        userIn.val('')
     }
 }
 })

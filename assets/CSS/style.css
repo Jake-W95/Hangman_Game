@@ -36,9 +36,11 @@ main{
     padding: .3rem;
     margin: 0 .7rem;
     text-transform: capitalize;
+    color: white;
 }
 
 .correct{
-    background: blue;
-    color: orange;
+    /* /* background: blue; */
+    color: black; 
+    
 }
