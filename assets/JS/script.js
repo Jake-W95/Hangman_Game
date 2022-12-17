@@ -5,8 +5,10 @@ var wordSec = $('#wordSec')
 
 
 $(newWordBtn).click(function () {
+var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+$(wordSec).empty();
 
-  for(var C of wordList[0]){
+  for(var C of randomWord){
     $(wordSec).append(`
     <div class="letter">${C}</div>
     `)
