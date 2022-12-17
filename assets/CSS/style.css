@@ -32,10 +32,12 @@ main{
 }
 .letter{
     border: 2px solid black;
-    font-size: 7rem;
+    width: 1em;
+    font-size: 6rem;
     padding: .3rem;
     margin: 0 .7rem;
     text-transform: capitalize;
+    text-align: center;
     color: white;
 }
 
