@@ -5,54 +5,66 @@ var wordSec = $('#wordSec')
 var lives = 5
 var livesLeft = $('#livesLeft')
 
-
+var wordString = ''
 // document.ready(setRemainingLives())
-
-
-
-
-
+function startLives() {
+    $(livesLeft).text(5)
+}
 function setRemainingLives() {
-    
     $(livesLeft).text(lives)
 }
+function gameOver(){
+    alert('game over')
+    $(wordSec).empty();
+    $(livesLeft).text('Lives')
+}
+
 $(newWordBtn).click(function () {
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+    console.log(randomWord, 'randowrd')
     $(wordSec).empty();
-    setRemainingLives()
+    startLives()
 
     for (var C of randomWord) {
         $(wordSec).append(`
         <div class="letter">${C}</div>
         `)
-        var letters = $('.letter');
         // console.log(letters)
-
-
-        $(document).keydown(function (event) {
-            var key = event.originalEvent.key;
-            for (var L of letters) {
-                if (L.innerText === key.toUpperCase()) {
-                    $(L).addClass('correct');
-                }
-            }
-            if (randomWord.indexOf(key) === -1) {
-                alert('inc')
-                lives--;
-                setRemainingLives()
-            }
-        })
-
     }
-    if ($(letters).hasClass('correct')) {
-        alert('win')
-    }
+    
+    $(document).keydown(function (event) {
+        console.log(randomWord)
+        if(event.keyCode < 65 || event.keyCode > 90){
+            alert('not a letter')
+        }
+        var key = event.originalEvent.key;
+        var letters = $('.letter');
+        for (var L of letters) {
+            if (L.innerText === key.toUpperCase()) {
+                $(L).addClass('correct');
+            }
+        }
+    
+        if (randomWord.indexOf(key) === -1) {
+            alert('inc')
+            lives--;
+            setRemainingLives();
+        }
 
-
+        if(lives === 0){
+            gameOver()
+            
+            
+        }
+    })
 
 
 
 })
+
+
+
+
 // console.log(wordList[0][0])
 
 
