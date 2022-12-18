@@ -1,7 +1,8 @@
+/* resets */
 *{
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    /* padding: 0;
+    margin: 0; */
     margin-bottom: 2rem;
 }
 
@@ -9,15 +10,23 @@ body{
     font-family: sans-serif;
     height: 100%;
 }
-header{
-    height:.8rem;
-}
-
-main{
+/* Global Classes */
+.column{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
 }
+.justifyCenter{
+    justify-content: center;
+}
+
+/* Custom styling */
+header{
+    
+    align-items: center;
+    padding: 2rem;
+
+}
+
 #gameArea{
     display: flex;
     justify-content: space-between;
@@ -35,7 +44,7 @@ main{
 #wordSec{
     width: 75%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: flex-end;
     
 }
@@ -55,3 +64,8 @@ main{
     color: black; 
     
 }
+
+
+
+
+
