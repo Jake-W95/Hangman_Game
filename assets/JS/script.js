@@ -46,29 +46,18 @@ $(newWordBtn).click(function () {
         }
     
         if (randomWord.indexOf(key) === -1) {
-            alert('inc')
+            // alert('inc')
             lives--;
             setRemainingLives();
         }
-
         if(lives === 0){
-            gameOver()
-            
-            
+            gameOver() 
         }
     })
 
 
 
 })
-
-
-
-
-// console.log(wordList[0][0])
-
-
-
 
 // if($(letters).hasClass('correct')){
 //     alert('winner')
