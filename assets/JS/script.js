@@ -39,34 +39,43 @@ function newWord() {
             <div class="letter">${C}</div>
             `)
         }
+    console.log(word, 'randowrd');
+
     });
     $(livesImg).attr('src', 'assets/Images/HM6.jpg');
 
     console.log(lives)
 }
-
+///////////////////////////////////////////////////////////////////////NEW WORD BUTTON
 $(newWordBtn).click(function () {
     $(wordSec).empty();
-    // console.log(word, 'randowrd');
     // setRemainingLives();
     newWord();
     startLives();
     setRemainingLives();
 })
-
+//////////////////////////////////////////////////////////////////////KEYPRESS LISTENER
     $(document).keydown(function (event) {
+        /////////////////////////////////////////////////////////////NON-LETTER KEYS
         if (event.keyCode < 65 || event.keyCode > 90) {
             // alert('not a letter')
             return
         }
+
         var key = event.originalEvent.key;
         var letters = $('.letter');
         for (var L of letters) {
             if (L.innerText === key.toUpperCase()) {
                 $(L).addClass('correct');
+                console.log($('.letter'))
             }
 
         }
+
+        if($('.correct').length === $('.letter').length){
+            alert('winner')
+        }
+
         if (word.indexOf(key) === -1) {
             // alert('inc')
             lives = lives - 1;
