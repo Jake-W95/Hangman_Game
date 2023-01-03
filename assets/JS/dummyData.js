@@ -1,3 +1,6 @@
-var wordList = [
-    'bacon', 'apple', 'twin', 'tsunami', 'catacomb', 'zenith', 'may'
-]
+// var wordList = [
+//     'bacon', 'apple', 'twin', 'tsunami', 'catacomb', 'zenith', 'may'
+// ]
+
+
+    
