@@ -23,13 +23,12 @@ $(newWordBtn).click(function () {
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     console.log(randomWord, 'randowrd')
     $(wordSec).empty();
-    startLives()
+    startLives();
 
     for (var C of randomWord) {
         $(wordSec).append(`
         <div class="letter">${C}</div>
         `)
-        // console.log(letters)
     }
     
     $(document).keydown(function (event) {
@@ -43,11 +42,11 @@ $(newWordBtn).click(function () {
             if (L.innerText === key.toUpperCase()) {
                 $(L).addClass('correct');
             }
+
         }
-    
         if (randomWord.indexOf(key) === -1) {
-            alert('inc')
-            lives--;
+            // alert('inc')
+            lives = lives - 1;
             setRemainingLives();
         }
 
