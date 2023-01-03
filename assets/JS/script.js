@@ -1,24 +1,19 @@
-
 ///////////////////API Call
-
-
-
 var word = ''
 var newWordBtn = $('#newWord');
 var wordSec = $('#wordSec')
 
-// console.log(letter[0].innerText)
 var lives = 6;
 var livesLeft = $('#livesLeft');
 var livesImg = $('#hMan')
 
 var wordString = ''
-// document.ready(setRemainingLives())
-// function startLives() {
-//     $(livesLeft).text(lives)
-// }
+
 function setRemainingLives() {
     $(livesLeft).text(lives)
+}
+function startLives() {
+    lives = 6
 }
 function gameOver() {
     alert('game over');
@@ -38,28 +33,31 @@ function newWord() {
         }
     };
     $.ajax(settings).done(function (response) {
-        console.log(response.word);
-        // return response
         word = response.word
-
         for (var C of word) {
             $(wordSec).append(`
             <div class="letter">${C}</div>
             `)
         }
     });
+    $(livesImg).attr('src', 'assets/Images/HM6.jpg');
+
+    console.log(lives)
 }
 
 $(newWordBtn).click(function () {
     $(wordSec).empty();
-    console.log(word, 'randowrd')
-    setRemainingLives();
+    // console.log(word, 'randowrd');
+    // setRemainingLives();
     newWord();
-    // var randomWord = word;
+    startLives();
+    setRemainingLives();
+})
+
     $(document).keydown(function (event) {
-        // console.log(randomWord)
         if (event.keyCode < 65 || event.keyCode > 90) {
-            alert('not a letter')
+            // alert('not a letter')
+            return
         }
         var key = event.originalEvent.key;
         var letters = $('.letter');
@@ -95,7 +93,7 @@ $(newWordBtn).click(function () {
             gameOver();
         }
     })
-})
+
 
 
 
