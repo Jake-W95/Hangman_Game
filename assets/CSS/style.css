@@ -48,6 +48,32 @@ header{
     align-items: flex-end;
     
 }
+#endGame{
+    position: absolute;
+    background-color: bisque;
+    left: 50%;
+    margin-left: -625px;
+    width: 1250px; 
+    top: 5%;
+    height: 750px; 
+    /* margin-top: 50px; */
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.3rem;
+}
+.EGItems{
+    padding: 1em 2em;
+    background-color: rgb(181, 181, 181);
+    border: 3px solid black;
+}
+#word{
+font-size: 4em;
+}
+#definition{
+    font-size: 2.5em;
+}
 .letter{
     border: 2px solid black;
     width: 1em;
