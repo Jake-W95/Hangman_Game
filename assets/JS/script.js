@@ -163,12 +163,7 @@ $(document).keydown(function (event) {
       </section > `
 
         )
-        // for(item of array){
-        //     $('#defList').add(
-        //       item 
-        //     )
-        // }
-        // var array = ['one', 'two', 'three']
+
         for (Item of def) {
             // console.log(Item, 'itemInArr', $)
             // console.log(Item, 'item');
