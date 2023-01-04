@@ -3,22 +3,60 @@ var word = '';
 var def = [];
 var type = '';
 
-
-var newWordBtn = $('.newWord');
-var wordSec = $('#wordSec')
-
-var lives = 6;
+var lives = 0;
 var livesLeft = $('#livesLeft');
 var livesImg = $('#hMan')
 
-var wordString = ''
+var btnEasy = $('#easy');
+var btnNorm = $('#norm')
+var btnHard = $('#hard');
+
+var easyMode = false;
+var normalMode = true;
+var hardMode = false;
+
+var newWordBtn = $('.newWord');
+var wordSec = $('#wordSec');
+
+
+var wordString = '';
+var i = 0;
+
+
+$(btnEasy).click(function(){
+    easyMode = true;
+    normalMode = false;
+    hardMode = false;
+})
+$(btnNorm).click(function(){
+    easyMode = false;
+    normalMode = true;
+    hardMode = false;
+})
+$(btnHard).click(function(){
+    easyMode = false;
+    normalMode = false;
+    hardMode = true
+})
+    // alert('easy')
+
+
 
 
 function setRemainingLives() {
     $(livesLeft).text(lives)
 }
 function startLives() {
-    lives = 6
+    if(easyMode){
+        lives = 12
+    };
+    if(normalMode){
+        lives = 9
+    };
+    if(hardMode){
+        lives = 6
+    };
+    
 }
 function gameOver() {
     alert('game over');
@@ -39,6 +77,7 @@ function newWord() {
         }
     };
     $.ajax(getWord).done(function (wordResponse) {
+        console.log(wordResponse)
         word = wordResponse.word
         for (var C of word) {
             $(wordSec).append(`
@@ -59,28 +98,34 @@ function newWord() {
         };
 
         $.ajax(getDef).done(function (defResponse) {
+            console.log(defResponse, 'defResponse')
             def.length = 0;
-        
+            type = '';
             for (var defItem of defResponse.definitions) {
                 def.push(defItem.definition)
             }
+            console.log(word)
+            try {
+                type = defItem.partOfSpeech
+                console.log(defItem.partOfSpeech, 'type');
+                console.log(defItem.definition, 'def')
+            } catch (e) {
+            }
 
-            if (def.length === 0){
+            if (def.length === 0) {
                 def = ['No Definition apparently... How embarassing']
             }
 
-            console.log(word)
-            
-            console.log(defItem.definition, defItem.definitions);
+
         });
 
-$('#endGame').remove();
+        $('#endGame').remove();
     });
     $(livesImg).attr('src', 'assets/Images/HM6.jpg');
 
 }
 ///////////////////////////////////////////////////////////////////////NEW WORD BUTTON
-$(document).on('click', '.newWord',(function () {
+$(document).on('click', '.newWord', (function () {
     $(wordSec).empty();
     // setRemainingLives();
     newWord();
@@ -111,53 +156,61 @@ $(document).keydown(function (event) {
         $(document.body).prepend(
 
             `<section id="endGame">
+            <h4 class="EGItmes" id="type">${type}</h4>
                 <h1 class="EGItems" id="word">${word}</h1>
-                <h5 class="EGItems" id="definition">${def}</h5>
-                <button class="newWord">New Word</button>
-            </section>`
+                <ol id="defList"> </ol>
+
+
+        <button class="newWord">New Word</button>
+      </section > `
+
+    //   < h5 class= "EGItems" id = "definition" > ${def}</h5 >
+
+
         )
 
-    }
+        if (def.length >1){
+            console.log(def)
+
+    for (Item of def) {
+        console.log(Item, 'itemInArr', $)
+        $('#defList').append(
+            `<li class="listItem>${JSON.stringify(this)} </li>`,
+        )
+    i++;
+}
+} else {
+    $('#defList').append(`<li class-"listItem"> ${def} </li>`)
+}
+
+
+}
 
     if (word.indexOf(key) === -1) {
-        // alert('inc')
-        lives = lives - 1;
-        setRemainingLives();
-    }
+    // alert('inc')
+    lives = lives - 1;
+    setRemainingLives();
+}
 
-    if (lives === 5) {
-        $(livesImg).attr('src', 'assets/Images/HM5.jpg')
-    }
-    if (lives === 4) {
-        $(livesImg).attr('src', 'assets/Images/HM4.jpg')
-    }
-    if (lives === 3) {
-        $(livesImg).attr('src', 'assets/Images/HM3.jpg')
-    }
-    if (lives === 2) {
-        $(livesImg).attr('src', 'assets/Images/HM2.jpg')
-    }
-    if (lives === 1) {
-        $(livesImg).attr('src', 'assets/Images/HM1.jpg')
-    }
-    if (lives === 0) {
-        // $(livesImg).attr('src', 'assets/Images/HM0.jpg');
-        gameOver();
-    }
+if (lives === 5) {
+    $(livesImg).attr('src', 'assets/Images/HM5.jpg')
+}
+if (lives === 4) {
+    $(livesImg).attr('src', 'assets/Images/HM4.jpg')
+}
+if (lives === 3) {
+    $(livesImg).attr('src', 'assets/Images/HM3.jpg')
+}
+if (lives === 2) {
+    $(livesImg).attr('src', 'assets/Images/HM2.jpg')
+}
+if (lives === 1) {
+    $(livesImg).attr('src', 'assets/Images/HM1.jpg')
+}
+if (lives === 0) {
+    // $(livesImg).attr('src', 'assets/Images/HM0.jpg');
+    gameOver();
+}
 })
 
-
-
-
-
-// console.log(wordList[0][0])
-
-
-
-
-// if($(letters).hasClass('correct')){
-//     alert('winner')
-// }
-
-
-
+//SINGLE DEFINITION APPENDS FINE, DEFINITIONS FROM ARRAY SHOW IN CONSOLE LOG AND APPEAR IN THE ELEMENTS TAB BUT NO TEXT SHOWS IN WINDOW

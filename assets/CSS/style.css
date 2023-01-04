@@ -74,6 +74,9 @@ font-size: 4em;
 #definition{
     font-size: 2.5em;
 }
+#listItem {
+    font-size: 500%;
+}
 .letter{
     border: 2px solid black;
     width: 1em;
