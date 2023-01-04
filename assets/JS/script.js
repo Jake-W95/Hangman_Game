@@ -23,22 +23,22 @@ var wordString = '';
 var i = 0;
 
 
-$(btnEasy).click(function(){
+$(btnEasy).click(function () {
     easyMode = true;
     normalMode = false;
     hardMode = false;
 })
-$(btnNorm).click(function(){
+$(btnNorm).click(function () {
     easyMode = false;
     normalMode = true;
     hardMode = false;
 })
-$(btnHard).click(function(){
+$(btnHard).click(function () {
     easyMode = false;
     normalMode = false;
     hardMode = true
 })
-    // alert('easy')
+// alert('easy')
 
 
 
@@ -47,16 +47,16 @@ function setRemainingLives() {
     $(livesLeft).text(lives)
 }
 function startLives() {
-    if(easyMode){
+    if (easyMode) {
         lives = 12
     };
-    if(normalMode){
+    if (normalMode) {
         lives = 9
     };
-    if(hardMode){
+    if (hardMode) {
         lives = 6
     };
-    
+
 }
 function gameOver() {
     alert('game over');
@@ -77,13 +77,14 @@ function newWord() {
         }
     };
     $.ajax(getWord).done(function (wordResponse) {
-        console.log(wordResponse)
+        // console.log(wordResponse)
         word = wordResponse.word
         for (var C of word) {
             $(wordSec).append(`
             <div class="letter">${C}</div>
             `)
         }
+        alert(word)
 
         //////////////////////////////////////////////////////////////////////////////////Get Definition
         const getDef = {
@@ -154,63 +155,64 @@ $(document).keydown(function (event) {
     if ($('.correct').length === $('.letter').length) {
         alert('winner')
         $(document.body).prepend(
-
             `<section id="endGame">
             <h4 class="EGItmes" id="type">${type}</h4>
                 <h1 class="EGItems" id="word">${word}</h1>
-                <ol id="defList"> </ol>
-
-
+                <ol id="defList"></ol>
         <button class="newWord">New Word</button>
       </section > `
 
-    //   < h5 class= "EGItems" id = "definition" > ${def}</h5 >
-
-
         )
+        // for(item of array){
+        //     $('#defList').add(
+        //       item 
+        //     )
+        // }
+        // var array = ['one', 'two', 'three']
+        for (Item of def) {
+            // console.log(Item, 'itemInArr', $)
+            // console.log(Item, 'item');
+            $('#endGame').append(
+                "-", Item,
+                '<br>',
+                '<br>'
+    
+            )
+        }
+    }
 
-        if (def.length >1){
-            console.log(def)
-
-    for (Item of def) {
-        console.log(Item, 'itemInArr', $)
-        $('#defList').append(
-            `<li class="listItem>${JSON.stringify(this)} </li>`,
-        )
-    i++;
-}
-} else {
-    $('#defList').append(`<li class-"listItem"> ${def} </li>`)
-}
+    // if(def.length === 1) {
+    //     $('#defList').append(`<li class-"listItem"> ${def} </li>`)
+    // }
 
 
-}
+
 
     if (word.indexOf(key) === -1) {
-    // alert('inc')
-    lives = lives - 1;
-    setRemainingLives();
-}
+        // alert('inc')
+        lives = lives - 1;
+        setRemainingLives();
+    }
 
-if (lives === 5) {
-    $(livesImg).attr('src', 'assets/Images/HM5.jpg')
-}
-if (lives === 4) {
-    $(livesImg).attr('src', 'assets/Images/HM4.jpg')
-}
-if (lives === 3) {
-    $(livesImg).attr('src', 'assets/Images/HM3.jpg')
-}
-if (lives === 2) {
-    $(livesImg).attr('src', 'assets/Images/HM2.jpg')
-}
-if (lives === 1) {
-    $(livesImg).attr('src', 'assets/Images/HM1.jpg')
-}
-if (lives === 0) {
-    // $(livesImg).attr('src', 'assets/Images/HM0.jpg');
-    gameOver();
-}
+    if (lives === 5) {
+        $(livesImg).attr('src', 'assets/Images/HM5.jpg')
+    }
+    if (lives === 4) {
+        $(livesImg).attr('src', 'assets/Images/HM4.jpg')
+    }
+    if (lives === 3) {
+        $(livesImg).attr('src', 'assets/Images/HM3.jpg')
+    }
+    if (lives === 2) {
+        $(livesImg).attr('src', 'assets/Images/HM2.jpg')
+    }
+    if (lives === 1) {
+        $(livesImg).attr('src', 'assets/Images/HM1.jpg')
+    }
+    if (lives === 0) {
+        // $(livesImg).attr('src', 'assets/Images/HM0.jpg');
+        gameOver();
+    }
 })
 
 //SINGLE DEFINITION APPENDS FINE, DEFINITIONS FROM ARRAY SHOW IN CONSOLE LOG AND APPEAR IN THE ELEMENTS TAB BUT NO TEXT SHOWS IN WINDOW
