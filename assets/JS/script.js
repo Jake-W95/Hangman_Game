@@ -115,7 +115,7 @@ function newWord() {
             for (var defItem of defResponse.definitions) {
                 def.push(defItem.definition)
             }
-            console.log(word)
+            // console.log(word)
             try {
                 type = defItem.partOfSpeech
 
@@ -189,7 +189,7 @@ $(document).keydown(function (event) {
         setRemainingLives();
         $('#incorrect').append(`<div class="inc">${key}</div>`);
         incLetts.add(key);
-        console.log(incLetts)
+        
 
     }
 
@@ -211,9 +211,8 @@ $(document).keydown(function (event) {
         $(livesImg).attr('src', 'assets/Images/HM1.jpg')
     }
     if (lives === 0 && word.length > 0) {
-        // $(livesImg).attr('src', 'assets/Images/HM0.jpg');
+        
         gameOver();
     }
 })
 
-//SINGLE DEFINITION APPENDS FINE, DEFINITIONS FROM ARRAY SHOW IN CONSOLE LOG AND APPEAR IN THE ELEMENTS TAB BUT NO TEXT SHOWS IN WINDOW
