@@ -17,6 +17,7 @@ var hardMode = false;
 
 var newWordBtn = $('.newWord');
 var wordSec = $('#wordSec');
+var specChars = ' ';
 
 
 var wordString = '';
@@ -80,11 +81,19 @@ function newWord() {
         // console.log(wordResponse)
         word = wordResponse.word
         for (var C of word) {
-            $(wordSec).append(`
+            var n = C.search(/\s/);
+            if (n < 0) {
+                $(wordSec).append(`
             <div class="letter">${C}</div>
             `)
+            } else {
+                $(wordSec).append(`
+                <div class="letter correct">${C}</div>`);
+                console.log('Space')
+
+            }
         }
-        alert(word)
+        // alert(word)
 
         //////////////////////////////////////////////////////////////////////////////////Get Definition
         const getDef = {
@@ -171,7 +180,7 @@ $(document).keydown(function (event) {
                 "-", Item,
                 '<br>',
                 '<br>'
-    
+
             )
         }
     }
