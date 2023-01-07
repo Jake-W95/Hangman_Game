@@ -78,23 +78,22 @@ function newWord() {
         }
     };
     $.ajax(getWord).done(function (wordResponse) {
-        // console.log(wordResponse)
+        
         word = wordResponse.word
         for (var C of word) {
-            var n = C.search(/\s/);
-            if (n < 0) {
+            console.log(C)
+            var n = C.search(/\s/);  ///////////////  /\s/ === Space Character
+            if (n < 0 && C !== "-" && C  !== ".") {
                 $(wordSec).append(`
             <div class="letter">${C}</div>
             `)
-            } else {
+            } else{
                 $(wordSec).append(`
                 <div class="letter correct">${C}</div>`);
                 console.log('Space')
 
             }
         }
-        // alert(word)
-
         //////////////////////////////////////////////////////////////////////////////////Get Definition
         const getDef = {
             "async": true,
