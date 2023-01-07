@@ -17,6 +17,7 @@ var hardMode = false;
 
 var newWordBtn = $('.newWord');
 var wordSec = $('#wordSec');
+var specChars = ' ';
 
 
 var wordString = '';
@@ -77,15 +78,22 @@ function newWord() {
         }
     };
     $.ajax(getWord).done(function (wordResponse) {
-        // console.log(wordResponse)
+        
         word = wordResponse.word
         for (var C of word) {
-            $(wordSec).append(`
+            console.log(C)
+            var n = C.search(/\s/);  ///////////////  /\s/ === Space Character
+            if (n < 0 && C !== "-" && C  !== ".") {
+                $(wordSec).append(`
             <div class="letter">${C}</div>
             `)
-        }
-        alert(word)
+            } else{
+                $(wordSec).append(`
+                <div class="letter correct">${C}</div>`);
+                console.log('Space')
 
+            }
+        }
         //////////////////////////////////////////////////////////////////////////////////Get Definition
         const getDef = {
             "async": true,
@@ -163,12 +171,7 @@ $(document).keydown(function (event) {
       </section > `
 
         )
-        // for(item of array){
-        //     $('#defList').add(
-        //       item 
-        //     )
-        // }
-        // var array = ['one', 'two', 'three']
+
         for (Item of def) {
             // console.log(Item, 'itemInArr', $)
             // console.log(Item, 'item');
@@ -176,7 +179,7 @@ $(document).keydown(function (event) {
                 "-", Item,
                 '<br>',
                 '<br>'
-    
+
             )
         }
     }
