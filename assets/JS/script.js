@@ -146,6 +146,7 @@ $(document).on('click', '.newWord', (function () {
 //////////////////////////////////////////////////////////////////////KEYPRESS LISTENER
 $(document).keydown(function (event) {
     /////////////////////////////////////////////////////////////NON-LETTER KEYS
+ 
     if (event.keyCode < 65 || event.keyCode > 90) {
         
         return
@@ -160,7 +161,7 @@ $(document).keydown(function (event) {
         }
     }
     /////////////////////////////////////////////////////////////////////////Win State
-    if ($('.correct').length === $('.letter').length) {
+    if ($('.correct').length === $('.letter').length && word.length > 0) {
         
         $(document.body).prepend(
             `<section id="endGame">
@@ -181,7 +182,7 @@ $(document).keydown(function (event) {
         }
     }
 
-    if (word.indexOf(key) === -1 && incLetts.has(key) === false) {
+    if (word.indexOf(key) === -1 && incLetts.has(key) === false && word.length > 0) {
         
         lives = lives - 1;
         setRemainingLives();
@@ -208,7 +209,7 @@ $(document).keydown(function (event) {
     if (lives === 1) {
         $(livesImg).attr('src', 'assets/Images/HM1.jpg')
     }
-    if (lives === 0) {
+    if (lives === 0 && word.length > 0) {
         // $(livesImg).attr('src', 'assets/Images/HM0.jpg');
         gameOver();
     }
