@@ -14,28 +14,37 @@
 
     <main class="column" style="width: 85%; margin: auto;">
         <header class="column">
-            <h1>Hangman Game, Bitches</h1>
-            <button class="newWord">New Word</button>
-            <div id="difficulty">
-                <button id="easy">EASY</button>
-                <button id="norm">NORMAL</button>
-                <button id="hard">HARD</button>
+            <h1>Hangman</h1>
+            <button class="newWord" style="margin-bottom:1.5rem; height:3.5rem; width:10rem; font-size: 145%;">New Word</button>
+            <div class="row justifyBetween" id="difficulty" style="width: 25%;">
+                <div class="column ">
+                    <button id="easy">EASY</button>
+                    <p class="descript">12 Lives</p>
+                </div>
+                <div class="columm">
+                    <button id="norm">NORMAL</button>
+                    <p class="descript">9 lives</p>
+                </div>
+                <div class="column">
+                    <button id="hard">HARD</button>
+                    <p class="descript">6 Lives</p> 
+                </div>
             </div>
         </header>
 
 
-        <section  class="row" id="gameArea">
+        <section class="row" id="gameArea">
             <h2 id="livesLeft">Lives</h2>
             <div id="imgSec">
                 <img src="assets/Images/HM6.jpg" id="hMan">
             </div>
-            <section class="column justifyBetween" >
+            <section class="column justifyBetween">
                 <div class="row justifyAround" id="incorrect">
-                    
+
                 </div>
-            
-            <div  id="wordSec">
-            </div>
+
+                <div id="wordSec">
+                </div>
             </section>
         </section>
     </main>

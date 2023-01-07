@@ -3,7 +3,7 @@
     box-sizing: border-box;
     /* padding: 0;
     margin: 0; */
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
 }
 
 body {
@@ -37,6 +37,7 @@ body {
     font-size: 2rem;
     text-transform: lowercase;
 }
+
 
 /* Custom styling */
 header {
@@ -120,4 +121,7 @@ header {
     /* /* background: blue; */
     color: black;
 
+}
+.descript{
+    margin: 0, auto;
 }

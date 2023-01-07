@@ -66,6 +66,8 @@ function gameOver() {
     $(wordSec).empty();
     $(livesLeft).text('Lives');
     $(livesImg).attr('src', 'assets/Images/HM6.jpg');
+    incLetts = new Set()
+    $('#incorrect').empty()
 }
 function newWord() {
     /////////////////////////////////////////////////////////////////////////////////////GetWord
