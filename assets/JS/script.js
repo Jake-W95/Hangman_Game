@@ -83,7 +83,8 @@ function newWord() {
     };
     $.ajax(getWord).done(function (wordResponse) {
 
-        word = wordResponse.word
+        word = wordResponse.word;
+        
         for (var C of word) {
             var n = C.search(/\s/);  ///////////////  /\s/ === Space Character
             if (n < 0 && C !== "-" && C !== ".") {
@@ -92,7 +93,7 @@ function newWord() {
             `)
             } else {
                 $(wordSec).append(`
-                <div class="letter correct">${C}</div>`);
+                <div class="letter correct" style="height:5%">${C}</div>`);
             }
         }
         //////////////////////////////////////////////////////////////////////////////////Get Definition

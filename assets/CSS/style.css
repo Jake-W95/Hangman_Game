@@ -69,6 +69,7 @@ header {
 #wordSec {
 
     display: flex;
+    align-items:flex-end
 
 }
 
