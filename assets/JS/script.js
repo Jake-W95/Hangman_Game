@@ -18,9 +18,11 @@ var hardMode = false;
 var newWordBtn = $('.newWord');
 var wordSec = $('#wordSec');
 var specChars = ' ';
+var incLetts = new Set();
 
 
-var wordString = '';
+
+
 var i = 0;
 
 
@@ -39,7 +41,7 @@ $(btnHard).click(function () {
     normalMode = false;
     hardMode = true
 })
-// alert('easy')
+
 
 
 
@@ -78,20 +80,17 @@ function newWord() {
         }
     };
     $.ajax(getWord).done(function (wordResponse) {
-        
+
         word = wordResponse.word
         for (var C of word) {
-            console.log(C)
             var n = C.search(/\s/);  ///////////////  /\s/ === Space Character
-            if (n < 0 && C !== "-" && C  !== ".") {
+            if (n < 0 && C !== "-" && C !== ".") {
                 $(wordSec).append(`
             <div class="letter">${C}</div>
             `)
-            } else{
+            } else {
                 $(wordSec).append(`
                 <div class="letter correct">${C}</div>`);
-                console.log('Space')
-
             }
         }
         //////////////////////////////////////////////////////////////////////////////////Get Definition
@@ -107,7 +106,6 @@ function newWord() {
         };
 
         $.ajax(getDef).done(function (defResponse) {
-            console.log(defResponse, 'defResponse')
             def.length = 0;
             type = '';
             for (var defItem of defResponse.definitions) {
@@ -116,8 +114,7 @@ function newWord() {
             console.log(word)
             try {
                 type = defItem.partOfSpeech
-                console.log(defItem.partOfSpeech, 'type');
-                console.log(defItem.definition, 'def')
+
             } catch (e) {
             }
 
@@ -131,6 +128,8 @@ function newWord() {
         $('#endGame').remove();
     });
     $(livesImg).attr('src', 'assets/Images/HM6.jpg');
+    incLetts = new Set()
+    $('#incorrect').empty()
 
 }
 ///////////////////////////////////////////////////////////////////////NEW WORD BUTTON
@@ -145,23 +144,21 @@ $(document).on('click', '.newWord', (function () {
 $(document).keydown(function (event) {
     /////////////////////////////////////////////////////////////NON-LETTER KEYS
     if (event.keyCode < 65 || event.keyCode > 90) {
-        // alert('not a letter')
+        
         return
     }
-
     var key = event.originalEvent.key;
     var letters = $('.letter');
+
     /////////////////////////////////////////////////////////////////Check Input Correct
     for (var L of letters) {
         if (L.innerText === key.toUpperCase()) {
             $(L).addClass('correct');
-            // console.log($('.letter'))
         }
-
     }
     /////////////////////////////////////////////////////////////////////////Win State
     if ($('.correct').length === $('.letter').length) {
-        alert('winner')
+        
         $(document.body).prepend(
             `<section id="endGame">
             <h4 class="EGItmes" id="type">${type}</h4>
@@ -169,12 +166,9 @@ $(document).keydown(function (event) {
                 <ol id="defList"></ol>
         <button class="newWord">New Word</button>
       </section > `
-
         )
-
         for (Item of def) {
-            // console.log(Item, 'itemInArr', $)
-            // console.log(Item, 'item');
+
             $('#endGame').append(
                 "-", Item,
                 '<br>',
@@ -184,18 +178,17 @@ $(document).keydown(function (event) {
         }
     }
 
-    // if(def.length === 1) {
-    //     $('#defList').append(`<li class-"listItem"> ${def} </li>`)
-    // }
-
-
-
-
-    if (word.indexOf(key) === -1) {
-        // alert('inc')
+    if (word.indexOf(key) === -1 && incLetts.has(key) === false) {
+        
         lives = lives - 1;
         setRemainingLives();
+        $('#incorrect').append(`<div class="inc">${key}</div>`);
+        incLetts.add(key);
+        console.log(incLetts)
+
     }
+
+
 
     if (lives === 5) {
         $(livesImg).attr('src', 'assets/Images/HM5.jpg')
