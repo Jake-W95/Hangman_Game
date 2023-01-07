@@ -12,7 +12,7 @@
 <body>
 
 
-    <main class="column">
+    <main class="column" style="width: 85%; margin: auto;">
         <header class="column">
             <h1>Hangman Game, Bitches</h1>
             <button class="newWord">New Word</button>
@@ -24,18 +24,24 @@
         </header>
 
 
-        <div id="gameArea">
+        <section  class="row" id="gameArea">
             <h2 id="livesLeft">Lives</h2>
             <div id="imgSec">
                 <img src="assets/Images/HM6.jpg" id="hMan">
             </div>
-            <div class="justifyCenter" id="wordSec">
+            <section class="column justifyBetween" >
+                <div class="row justifyAround" id="incorrect">
+                    
+                </div>
+            
+            <div  id="wordSec">
             </div>
-        </div>
+            </section>
+        </section>
     </main>
 
-    
- 
+
+
 
     <!-- <Footer>By Me, bitches... Again...</Footer> -->
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"
