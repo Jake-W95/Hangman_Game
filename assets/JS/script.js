@@ -71,6 +71,7 @@ function gameOver() {
 }
 function newWord() {
     /////////////////////////////////////////////////////////////////////////////////////GetWord
+    $('#endGame').remove();
     const getWord = {
         "async": true,
         "crossDomain": true,
