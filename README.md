@@ -1,6 +1,8 @@
 # Hangman Game
 ## Simple hangman game using words from an API
 
+Live Site: https://jake-w95.github.io/Hangman_Game/
+
 - Pulls a random word from an API
 - Has different difficulty settings (# of lives)
 - Counts down lives
